@@ -20,8 +20,6 @@
 +
      return conf->meth->load_bio(conf, bp, eline);
  }
- 
-
 --- openssl/Makefile.org	2016-03-11 16:37:44.000000000 +0000
 +++ openssl/Makefile_new.org	2016-03-11 16:38:06.000000000 +0000
 @@ -61,7 +61,7 @@
@@ -33,3 +31,47 @@
  EXE_EXT= 
  ARFLAGS=
  AR=ar $(ARFLAGS) r
+--- openssl/crypto/aes/asm/aes-armv4.pl	2016-03-11 16:39:06.000000000 +0000
++++ openssl/crypto/aes/asm/aes-armv4_new.pl	2016-03-11 16:43:11.000000000 +0000
+@@ -52,6 +52,9 @@
+ 
+ $code=<<___;
+ #include "arm_arch.h"
++
++.extern digitalWrite
++
+ .text
+ .code	32
+ 
+@@ -169,6 +172,15 @@
+ AES_encrypt:
+ 	sub	r3,pc,#8		@ AES_encrypt
+ 	stmdb   sp!,{r1,r4-r12,lr}
++
++	@@ triggering
++	stmdb   sp!,{r0-r12,lr}
++	mov r0, #0
++	mov r1, #1
++	bl digitalWrite
++	ldmia	  sp!,{r0-r12,lr}
++	@@ triggering
++
+ 	mov	$rounds,r0		@ inp
+ 	mov	$key,r2
+ 	sub	$tbl,r3,#AES_encrypt-AES_Te	@ Te
+@@ -257,6 +269,15 @@
+ 	strb	$t3,[$rounds,#14]
+ 	strb	$s3,[$rounds,#15]
+ #endif
++
++  @@ triggering
++	stmdb   sp!,{r0-r12,lr}
++	mov r0, #0
++	mov r1, #0
++	bl digitalWrite
++	ldmia	  sp!,{r0-r12,lr}
++	@@ triggering
++
+ #if __ARM_ARCH__>=5
+ 	ldmia	sp!,{r4-r12,pc}
+ #else
