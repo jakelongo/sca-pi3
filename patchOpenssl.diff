@@ -1,25 +1,3 @@
---- openssl/crypto/conf/conf_lib.c	2016-03-11 16:00:43.000000000 +0000
-+++ openssl/crypto/conf/conf_lib_new.c	2016-03-11 16:00:28.000000000 +0000
-@@ -64,6 +64,9 @@
- #include <openssl/conf_api.h>
- #include <openssl/lhash.h>
- 
-+// Header for GPIO functions
-+#include <wiringPi.h>
-+
- const char CONF_version[] = "CONF" OPENSSL_VERSION_PTEXT;
- 
- static CONF_METHOD *default_CONF_method = NULL;
-@@ -287,6 +290,10 @@
-         return 0;
-     }
- 
-+    // Setup GPIO
-+    wiringPiSetup ();
-+    pinMode(0, OUTPUT);
-+
-     return conf->meth->load_bio(conf, bp, eline);
- }
 --- openssl/Makefile.org	2016-03-11 16:37:44.000000000 +0000
 +++ openssl/Makefile_new.org	2016-03-11 16:38:06.000000000 +0000
 @@ -61,7 +61,7 @@
