@@ -1,8 +1,6 @@
 @@ OpenSSL trigger patches @@
-diff --git a/openssl/crypto/conf/conf_lib.c b/openssl/crypto/conf/conf_lib.c
-index 5281384..9e14c7a 100644
---- a/openssl/crypto/conf/conf_lib.c
-+++ b/openssl/crypto/conf/conf_lib.c
+--- ./openssl/crypto/conf/conf_lib.c
++++ ./openssl/crypto/conf/conf_lib.c
 @@ -64,6 +64,9 @@
  #include <openssl/conf_api.h>
  #include <openssl/lhash.h>
