@@ -1,0 +1,25 @@
+@@ OpenSSL trigger patches @@
+diff --git a/openssl/crypto/conf/conf_lib.c b/openssl/crypto/conf/conf_lib.c
+index 5281384..9e14c7a 100644
+--- a/openssl/crypto/conf/conf_lib.c
++++ b/openssl/crypto/conf/conf_lib.c
+@@ -64,6 +64,9 @@
+ #include <openssl/conf_api.h>
+ #include <openssl/lhash.h>
+
++// Header for GPIO functions
++#include <wiringPi.h>
++
+ const char CONF_version[] = "CONF" OPENSSL_VERSION_PTEXT;
+
+ static CONF_METHOD *default_CONF_method = NULL;
+@@ -287,6 +290,10 @@ int NCONF_load_bio(CONF *conf, BIO *bp, long *eline)
+         return 0;
+     }
+
++    // Setup GPIO
++    wiringPiSetup ();
++    pinMode(0, OUTPUT);
++
+     return conf->meth->load_bio(conf, bp, eline);
+ }
