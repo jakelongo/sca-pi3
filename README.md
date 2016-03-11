@@ -4,20 +4,24 @@ the RaspberryPi 3 platform.
 First things first, get all the stuff running on the Pi. Clone the repo:
 
 ```bash
-git clone https://bitbucket.org/jakelongo/multicore.git
+git clone https://github.com/jakelongo/sca-pi3.git
 ```
 
-Pull in and install WiringPi submodule:
+Pull in OpenSSL and WiringPi:
 
 ```bash
-git submodule init
-git submodule update
+git submodule update --init
+```
+
+Build and install WiringPi:
+
+```bash
 cd WiringPi
 ./build
 cd ..
 ```
 
-Prep and build the OpenSSL version included:
+Patch and build OpenSSL:
 
 ```bash
 cd openssl
