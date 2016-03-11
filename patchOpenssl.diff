@@ -21,3 +21,14 @@
      return conf->meth->load_bio(conf, bp, eline);
  }
  
+--- openssl/Makefile.org	2016-03-11 16:09:03.000000000 +0000
++++ openssl/Makefile_new.org	2016-03-11 16:10:10.000000000 +0000
+@@ -137,7 +137,7 @@
+ 
+ DIRS=   crypto ssl engines apps test tools
+ ENGDIRS= ccgost
+-SHLIBDIRS= crypto ssl
++SHLIBDIRS= crypto ssl wiringPi
+ 
+ # dirs in crypto to build
+ SDIRS=  \
