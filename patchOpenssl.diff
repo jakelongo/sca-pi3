@@ -75,3 +75,27 @@
  #if __ARM_ARCH__>=5
  	ldmia	sp!,{r4-r12,pc}
  #else
+--- openssl/crypto/conf/conf_lib.c	2016-03-11 17:36:23.000000000 +0000
++++ openssl/crypto/conf/conf_lib_new.c	2016-03-11 17:35:51.000000000 +0000
+@@ -64,6 +64,9 @@
+ #include <openssl/conf_api.h>
+ #include <openssl/lhash.h>
+ 
++// Header for GPIO functions
++#include <wiringPi.h>
++
+ const char CONF_version[] = "CONF" OPENSSL_VERSION_PTEXT;
+ 
+ static CONF_METHOD *default_CONF_method = NULL;
+@@ -229,6 +232,11 @@
+ {
+     CONF *ret;
+ 
++    // Setup GPIO
++    wiringPiSetup ();
++    pinMode(0, OUTPUT);
++
++
+     if (meth == NULL)
+         meth = NCONF_default();
+ 
