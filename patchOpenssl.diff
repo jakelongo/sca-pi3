@@ -1,6 +1,5 @@
-# Patches for openssl triggering
---- ./openssl/crypto/conf/conf_lib.c
-+++ ./openssl/crypto/conf/conf_lib.c
+--- openssl/crypto/conf/conf_lib.c
++++ openssl/crypto/conf/conf_lib.c
 @@ -64,6 +64,9 @@
  #include <openssl/conf_api.h>
  #include <openssl/lhash.h>
