@@ -29,18 +29,15 @@ cd openssl
 make
 ```
 
-
 ---
 
 Contents of this repo are as follows:
 
-* /openssl - OpenSSL from https://github.com/openssl/openssl.git
+* /openssl - OpenSSL 1.0.2g @902f3f5 from https://github.com/openssl/openssl.git
 
 * /wiringPi - WiringPi from https://github.com/WiringPi/WiringPi.git the authors
 personal git was timing out.
 
 * /featureTest - Quick test for the implemented features on both aarch32|64
-
-
-  ** wiringPi setup and pin mode   | apps/openssl.c:239
-  ** set and clear trigger signals | crypto/aes/asm/aes-armv4.pl:194,292
+** wiringPi setup and pin mode   | apps/openssl.c:239
+** set and clear trigger signals | crypto/aes/asm/aes-armv4.pl:194,292
