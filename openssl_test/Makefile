@@ -23,11 +23,8 @@ CFLAGS := -Wall
 LIB := -L$(SSL_LIB)
 INC := -I$(SSL_INC)
 
-# source directory
-SOURCE := src/
-
 # Gather all sources
-SRCS := $(wildcard $(SOURCE)*.c)
+SRCS := $(wildcard *.c)
 
 # Find running architecture
 UNAME_M := $(shell uname -m)
