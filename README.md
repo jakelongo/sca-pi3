@@ -28,6 +28,7 @@ patch -p0 < openssl.patch
 cd openssl
 ```
 
+```bash
 Build OpenSSL and optionally use directives from the build table below
 ./build [lib] [defs]
 make depend
