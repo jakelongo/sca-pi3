@@ -4,4 +4,4 @@ BINS := $(SRCS:%.c=%)
 all: $(BINS)
 
 $(BINS): $(SRCS)
-  $(CC) $(CFLAGS) -o $@ $<
+	$(CC) $(CFLAGS) -o $@ $<
