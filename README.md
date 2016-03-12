@@ -51,14 +51,13 @@ Contents of this repo are as follows:
 
 * generatePatch.sh - this is used to generate the openssl.patch file
 
-* /openssl - OpenSSL 1.0.1s @57ac73f from https://github.com/openssl/openssl.git
+* /openssl - OpenSSL 1.0.1s @57ac73f from
+  https://github.com/openssl/openssl.git
 
-* /wiringPi - WiringPi from https://github.com/WiringPi/WiringPi.git the authors
-personal git was timing out.
+* /wiringPi - WiringPi from https://github.com/WiringPi/WiringPi.git the
+  authors personal git was timing out.
 
 * /featureTest - Quick test for the implemented features on both aarch32|64
 
-* patchOpenssl.patch
-
-** wiringPi setup and pin mode   | apps/openssl.c:239
-** set and clear trigger signals | crypto/aes/asm/aes-armv4.pl:194,292
+* patchOpenssl.patch - changes to the openssl source to aid in the SCA signal
+  exploration phase.
