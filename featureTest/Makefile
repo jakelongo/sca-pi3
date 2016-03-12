@@ -3,5 +3,8 @@ BINS := $(SRCS:%.c=%)
 
 all: $(BINS)
 
-$(BINS): $(SRCS)
+aarch32: $(SRCS)
+	$(CC) $(CFLAGS) -o $@ $<
+
+aarch64: $(SRCS)
 	$(CC) $(CFLAGS) -o $@ $<
