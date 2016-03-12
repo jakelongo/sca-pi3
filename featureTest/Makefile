@@ -8,3 +8,7 @@ aarch32: $(SRCS)
 
 aarch64: $(SRCS)
 	$(CC) $(CFLAGS) -o $@ $<
+
+clean:
+	rm aarch32
+	rm aarch64
