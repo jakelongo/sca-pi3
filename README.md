@@ -1,6 +1,8 @@
 Experiment `playground' for conducting side-channel research on
 the RaspberryPi 3 platform.
 
+# Build
+
 First things first, get all the stuff running on the Pi. Clone the repo:
 
 ```bash
@@ -28,17 +30,20 @@ patch -p0 < openssl.patch
 cd openssl
 ```
 
-```bash
 Build OpenSSL and optionally use directives from the build table below
+```bash
 ./build [lib] [defs]
 make depend
 make
-sudo make isntall
+sudo make install
 ```
+
+## OpenSSL pre-processor directives
 
 |  libraries |  defines |                     Notes                    |
 |:----------:|:--------:|:--------------------------------------------:|
 | -lwiringPi | AES_TRIG | Trigger placed around each AES enc/dec call. |
+
 
 ---
 
