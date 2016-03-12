@@ -24,9 +24,12 @@ cd ..
 Patch and build OpenSSL:
 
 ```bash
+patch -p0 < patchOpenssl.patch
 cd openssl
 ./build
+make depend
 make
+sudo make isntall
 ```
 
 ---
