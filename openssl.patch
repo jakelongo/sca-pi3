@@ -1,31 +1,23 @@
---- openssl/Makefile.org	2016-03-11 16:37:44.000000000 +0000
-+++ openssl/Makefile_new.org	2016-03-11 16:38:06.000000000 +0000
-@@ -61,7 +61,7 @@
- CFLAG= -O
- DEPFLAG= 
- PEX_LIBS= 
--EX_LIBS= 
-+EX_LIBS= -lwiringPi
- EXE_EXT= 
- ARFLAGS=
- AR=ar $(ARFLAGS) r
---- openssl/crypto/aes/asm/aes-armv4.pl	2016-03-11 16:39:06.000000000 +0000
-+++ openssl/crypto/aes/asm/aes-armv4_new.pl	2016-03-11 16:43:11.000000000 +0000
-@@ -52,6 +52,9 @@
+--- ./openssl/crypto/aes/asm/aes-armv4.pl	2016-03-12 16:02:43.000000000 +0000
++++ ./openssl/crypto/aes/asm/aes-armv4.pl_diff	2016-03-12 16:28:25.000000000 +0000
+@@ -52,6 +52,11 @@
  
  $code=<<___;
  #include "arm_arch.h"
 +
++#ifdef AES_TRIG
 +.extern digitalWrite
++#endif /* AES_TRIG */
 +
  .text
  .code	32
  
-@@ -169,6 +172,15 @@
+@@ -169,6 +174,17 @@
  AES_encrypt:
  	sub	r3,pc,#8		@ AES_encrypt
  	stmdb   sp!,{r1,r4-r12,lr}
 +
++	#ifdef AES_TRIG
 +	@@ triggering
 +	stmdb   sp!,{r0-r12,lr}
 +	mov r0, #0
@@ -33,15 +25,17 @@
 +	bl digitalWrite
 +	ldmia	  sp!,{r0-r12,lr}
 +	@@ triggering
++	#endif /* AES_TRIG */
 +
  	mov	$rounds,r0		@ inp
  	mov	$key,r2
  	sub	$tbl,r3,#AES_encrypt-AES_Te	@ Te
-@@ -257,6 +269,15 @@
+@@ -257,6 +273,17 @@
  	strb	$t3,[$rounds,#14]
  	strb	$s3,[$rounds,#15]
  #endif
 +
++	#ifdef AES_TRIG
 +  @@ triggering
 +	stmdb   sp!,{r0-r12,lr}
 +	mov r0, #0
@@ -49,29 +43,34 @@
 +	bl digitalWrite
 +	ldmia	  sp!,{r0-r12,lr}
 +	@@ triggering
++	#endif /* AES_TRIG */
 +
  #if __ARM_ARCH__>=5
  	ldmia	sp!,{r4-r12,pc}
  #else
---- openssl/crypto/conf/conf_lib.c	2016-03-11 17:36:23.000000000 +0000
-+++ openssl/crypto/conf/conf_lib_new.c	2016-03-11 17:35:51.000000000 +0000
-@@ -64,6 +64,9 @@
+--- ./openssl/crypto/conf/conf_lib.c	2016-03-11 17:36:23.000000000 +0000
++++ ./openssl/crypto/conf/conf_lib.c_diff	2016-03-12 16:12:23.000000000 +0000
+@@ -64,6 +64,11 @@
  #include <openssl/conf_api.h>
  #include <openssl/lhash.h>
  
++#ifdef AES_TRIG
 +// Header for GPIO functions
 +#include <wiringPi.h>
++#endif /* AES_TRIG */
 +
  const char CONF_version[] = "CONF" OPENSSL_VERSION_PTEXT;
  
  static CONF_METHOD *default_CONF_method = NULL;
-@@ -229,6 +232,11 @@
+@@ -229,6 +234,13 @@
  {
      CONF *ret;
  
++    #ifdef AES_TRIG
 +    // Setup GPIO
 +    wiringPiSetup ();
 +    pinMode(0, OUTPUT);
++    #endif /* AES_TRIG */
 +
 +
      if (meth == NULL)

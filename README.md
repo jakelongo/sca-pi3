@@ -21,20 +21,29 @@ cd WiringPi
 cd ..
 ```
 
-Patch and build OpenSSL:
+Patch OpenSSL:
 
 ```bash
-patch -p0 < patchOpenssl.patch
+patch -p0 < openssl.patch
 cd openssl
-./build
+```
+
+Build OpenSSL and optionally use directives from the build table below
+./build [lib] [defs]
 make depend
 make
 sudo make isntall
 ```
 
+|  libraries |  defines |                     Notes                    |
+|:----------:|:--------:|:--------------------------------------------:|
+| -lwiringPi | AES_TRIG | Trigger placed around each AES enc/dec call. |
+
 ---
 
 Contents of this repo are as follows:
+
+* generatePatch.sh - this is used to generate the openssl.patch file
 
 * /openssl - OpenSSL 1.0.1s @57ac73f from https://github.com/openssl/openssl.git
 
