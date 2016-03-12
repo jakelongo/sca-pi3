@@ -40,7 +40,7 @@ sudo make install
 
 ## OpenSSL pre-processor directives
 
-|  libraries |  defines |                     Notes                    |
+|  lib       |  defs    |                     Notes                    |
 |:----------:|:--------:|:--------------------------------------------:|
 | -lwiringPi | AES_TRIG | Trigger placed around each AES enc/dec call. |
 
