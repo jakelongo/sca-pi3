@@ -47,17 +47,32 @@ sudo make install_sw
 
 ---
 
+# Test Plan
+
+
+### Single-core analysis
+
+Single core analysis models a *best case* scenario for an adversary where the
+DUT is not is not running any other user process. The target process affinity
+shall be fixed to a single core via the OS scheduler and the remaining cores
+clocked down to limit interference.
+
+Files in the `single_core`
+
+
+---
+
 Contents of this repo are as follows:
 
-* generatePatch.sh - generates the openssl.patch file
-
-* /openssl - OpenSSL 1.0.1s @57ac73f from
+* openssl/ - OpenSSL 1.0.1s @57ac73f from
   https://github.com/openssl/openssl.git
 
-* /wiringPi - WiringPi from https://github.com/WiringPi/WiringPi.git the
+* wiringPi/ - WiringPi from https://github.com/WiringPi/WiringPi.git the
   authors personal git was timing out
 
-* /featureTest - tests for implemented ARMv8 SoC features on both aarch32|64
+* featureTest/ - tests for implemented ARMv8 SoC features on both aarch32|64
 
 * openssl.patch - changes to the openssl source to aid in the SCA signal
   exploration phase
+
+* generatePatch.sh - generates the openssl.patch file (only for setup purposes)
