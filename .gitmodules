@@ -4,3 +4,6 @@
 [submodule "WiringPi"]
 	path = WiringPi
 	url = https://github.com/WiringPi/WiringPi.git
+[submodule "wolfssl"]
+	path = wolfssl
+	url = https://github.com/wolfSSL/wolfssl.git

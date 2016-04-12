@@ -9,7 +9,7 @@ First things first, get all the stuff running on the Pi. Clone the repo:
 git clone https://github.com/jakelongo/sca-pi3.git
 ```
 
-Pull in OpenSSL and WiringPi:
+Pull in OpenSSL, WolfSSL and WiringPi:
 
 ```bash
 git submodule update --init
