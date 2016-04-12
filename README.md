@@ -57,7 +57,7 @@ DUT is not is not running any other user process. The target process affinity
 shall be fixed to a single core via the OS scheduler and the remaining cores
 clocked down to limit interference.
 
-Files in the `single_core`
+Files `single_core`
 
 
 ---
