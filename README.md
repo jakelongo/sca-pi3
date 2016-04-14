@@ -23,6 +23,18 @@ cd WiringPi
 cd ..
 ```
 
+Build and install dependencies for wolfSSL:
+```bash
+sudo apt-get install autoconf automake libtool
+```
+
+Build wolfSSL:
+```bash
+./configure
+make
+make check
+```
+
 Patch OpenSSL:
 
 ```bash
@@ -32,7 +44,7 @@ patch -p0 < openssl.patch
 Build OpenSSL and optionally set flags from the build table below:
 ```bash
 cd openssl
-./build [lib] [defs]
+./config [lib] [defs]
 make depend
 make
 sudo make install_sw
