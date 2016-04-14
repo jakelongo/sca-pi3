@@ -30,6 +30,7 @@ sudo apt-get install autoconf automake libtool
 
 Build wolfSSL:
 ```bash
+./autogen.sh
 ./configure
 make
 make check
